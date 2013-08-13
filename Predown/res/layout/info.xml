@@ -17,7 +17,7 @@
             android:layout_marginLeft="5sp"
             android:text="PreShow"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -17,7 +17,7 @@
             android:layout_marginLeft="5dp"
             android:text="PreShow"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -57,6 +57,7 @@
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@id/username_txt"
             android:hint="example@example.com"
+            android:text="liyun.lv@harman.com"
             android:textSize="16sp" />
     </RelativeLayout>
 
@@ -85,6 +86,7 @@
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@id/passwd_txt"
             android:hint="123456"
+            android:text="Harman1234"
             android:textSize="16sp" />
     </RelativeLayout>
 
@@ -113,6 +115,7 @@
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@id/ip_txt"
             android:hint="http://example"
+            android:text="http://116.236.202.130"
             android:textSize="16sp" />
     </RelativeLayout>
 
@@ -141,6 +144,7 @@
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@id/port_txt"
             android:hint="123456"
+            android:text="8084"
             android:textSize="16sp" />
     </RelativeLayout>
 

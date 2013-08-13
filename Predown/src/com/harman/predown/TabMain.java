@@ -14,23 +14,33 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.TabHost;
 import android.widget.TabHost.TabContentFactory;
+import android.widget.TextView;
 
 public class TabMain extends FragmentActivity {
 	private TabHost tabHost;
 	private static int currentlayout = 0;
+	TextView mAttention;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.maintab);
-		// 该方法用于设置各个fragment布局与TabWidget之间的关联
+		mAttention = (TextView) findViewById(R.id.attentions);
+		String name = new  String("1 km ahead of the &lt;b>slower&lt;/b> download speed, please note that check important mails, etc."); 
+		int count = 12345; 
+		
+		String format2 = String.format(getResources().getString(R.string.attention), TextUtils.htmlEncode(name),count); 
+        CharSequence styledText2 = Html.fromHtml(format2); 
+        mAttention.setText(styledText2);
+        
 		setFragment();
-		// 该方法用于响应用户的点击事件
 		changeLayout();
 
 	}

@@ -25,6 +25,8 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.harman.predown.model.PdPerference;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -51,6 +53,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -79,12 +82,10 @@ public class Login extends Activity {
 
 	public static final int CONNECT_SUCCEED = 1;
 
-	private boolean autoReconnect;
-
 	private EditText passwd;
 
 	private EditText emailaddress;
-	
+
 	private String email;
 
 	private EditText ip;
@@ -116,6 +117,10 @@ public class Login extends Activity {
 	private int height;
 
 	private HttpNet httpConnect;
+
+	private boolean autologin;
+
+	private boolean autopredownload;
 
 	private final int WC = ViewGroup.LayoutParams.WRAP_CONTENT;
 
@@ -153,7 +158,28 @@ public class Login extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
 
+		autologin = PdPerference.getInstance(getApplicationContext())
+				.getAutoConnect();
+		autopredownload = PdPerference.getInstance(getApplicationContext())
+				.getAutoPredown();
+		final ImageView autologinview = (ImageView) findViewById(R.id.auto_login);
+		final ImageView autopredownloadview = (ImageView) findViewById(R.id.auto_pre);
+		if (autologin)
+			autologinview.setImageDrawable(getResources().getDrawable(
+					R.drawable.icon_radio_enable));
+		else
+			autologinview.setImageDrawable(getResources().getDrawable(
+					R.drawable.icon_radio_disable));
+
+		if (autopredownload)
+			autopredownloadview.setImageDrawable(getResources().getDrawable(
+					R.drawable.icon_radio_enable));
+		else
+			autopredownloadview.setImageDrawable(getResources().getDrawable(
+					R.drawable.icon_radio_disable));
+
 		Button bLogin = (Button) findViewById(R.id.login);
+		Button bReset = (Button) findViewById(R.id.reset);
 		emailaddress = (EditText) findViewById(R.id.username);
 		passwd = (EditText) findViewById(R.id.passwd);
 		ip = (EditText) findViewById(R.id.ip);
@@ -178,8 +204,52 @@ public class Login extends Activity {
 			}
 		});
 
-	}
+		bReset.setOnClickListener(new View.OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				emailaddress.setText("");
+				passwd.setText("");
+				ip.setText("");
+				port.setText("");
+			}
+		});
+
+		autologinview.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				autologin = !autologin;
+				if (autologin)
+					autologinview.setImageDrawable(getResources().getDrawable(
+							R.drawable.icon_radio_enable));
+				else
+					autologinview.setImageDrawable(getResources().getDrawable(
+							R.drawable.icon_radio_disable));
+
+				PdPerference.getInstance(getApplicationContext())
+						.setAutoConnect(autologin);
+			}
+		});
+
+		autopredownloadview.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				autopredownload = !autopredownload;
+				if (autopredownload)
+					autopredownloadview.setImageDrawable(getResources()
+							.getDrawable(R.drawable.icon_radio_enable));
+				else
+					autopredownloadview.setImageDrawable(getResources()
+							.getDrawable(R.drawable.icon_radio_disable));
+
+				PdPerference.getInstance(getApplicationContext())
+						.setAutoPredown(autopredownload);
+			}
+		});
+
+	}
 
 	private String readLog(String logpathds) {
 		String content = "";
@@ -212,12 +282,13 @@ public class Login extends Activity {
 			httpConnect = null;
 
 		}
+
 		Intent intent = new Intent(this, GetLine.class);
 		Bundle map = new Bundle();
 		map.putString("sessionid", sessionid);
 		map.putString("IPADDRESS", ipadd);
 		map.putString("PORT", portstring);
-		map.putString("MAIL",  email);
+		map.putString("MAIL", email);
 		intent.putExtra("SESSIONID", map);
 		startActivity(intent);
 	}
@@ -229,8 +300,6 @@ public class Login extends Activity {
 			httpConnect = null;
 
 		}
-		dlg = ProgressDialog.show(this, "GPS Info", "Getting ....");
-		dlg.setCancelable(true);
 	}
 
 	protected void startLoginActivity() {

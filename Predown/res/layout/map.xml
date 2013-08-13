@@ -16,7 +16,8 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="5dp"
             android:text="PreShow"
-            android:textSize="12sp" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -26,6 +27,7 @@
             android:layout_marginTop="15dp"
             android:text="Map Direction"
             android:textSize="30sp"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <TextView
@@ -37,6 +39,8 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="15dp"
             android:text="Tom"
+            android:ems="8"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
     </RelativeLayout>
@@ -44,9 +48,9 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp" >
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp" >
 
         <TextView
             android:id="@+id/start_txt"
@@ -56,25 +60,27 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:text="Start"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/start_txt"
-            android:hint="my location"
+            android:text="my location"
+            android:textColor="@color/black"
             android:textSize="16sp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp" >
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp" >
 
         <TextView
             android:id="@+id/dest_txt"
@@ -83,18 +89,31 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
-            android:text="Destination"
+            android:text="Dest"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <EditText
             android:id="@+id/destination"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/dest_txt"
             android:hint="harman shanghai"
+            android:textColor="@color/black"
             android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/search_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/destination"
+            android:text="Search"
+            android:textSize="16sp" >
+        </Button>
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -106,6 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:textColor="@color/black"
             android:background="@drawable/buttonstyle"
             android:text="Get Line" />
 

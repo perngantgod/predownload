@@ -4,5 +4,7 @@
     <string name="tab_1">video</string>
     <string name="tab_2">info</string>
     <string name="tab_3">setting</string>
+    
+    <string name="attention">1 km ahead of the &lt;b>slower&lt;/b> download speed, please note that check important mails, etc.</string>
 
 </resources>
